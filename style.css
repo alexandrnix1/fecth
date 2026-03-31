@@ -1,0 +1,21 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #dcff8a;
+}
+.container {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.content-block {
+    display: none;
+}
+.content-block.active {
+    display: block;
+}
+.menu-btn.active {
+    background-color: rgb(143, 143, 245);
+    color: rgb(255, 255, 255);
+}
+
