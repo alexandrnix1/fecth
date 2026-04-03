@@ -1,6 +1,6 @@
 body {
   font-family: Arial, sans-serif;
-  background-color: #dcff8a;
+  background-color: #454c57;
 }
 .container {
   display: flex;
@@ -19,3 +19,33 @@ body {
     color: rgb(255, 255, 255);
 }
 
+table {
+    width: 400px; 
+    margin-left: auto; 
+    margin-right: auto; 
+    border-spacing:0px 20px;
+}
+
+h1 {
+  width: 400px; 
+    margin-left: auto; 
+    margin-right: auto; 
+    border-collapse: collapse;
+    border-spacing:0px 20px;
+}
+
+table td {
+  width: 400px; 
+    margin-left: auto; 
+    margin-right: auto; 
+    border-collapse: collapse;
+    border-spacing:0px 20px;
+}
+
+table tr {
+  width: 400px; 
+    margin-left: auto; 
+    margin-right: auto; 
+    border-collapse: collapse;
+    border-spacing:0px 20px;
+}

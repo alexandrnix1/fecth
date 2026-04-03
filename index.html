@@ -11,12 +11,49 @@
     <button class="menu-btn" data-target="page2">Страница 2</button>
     <div class="content-block active" data-group="pages" id="page1">
     <h3>Контент 1</h3>
+    <button id="btn"></button>
+    <h1>Информация обо мне:></h1>
+    <table>
+        <tbody>
+            <tr>
+                <td>Моё имя</td>
+                <td>Александр</td>
+            </tr>
+            <tr>
+                <td>Мой никнейм</td>
+                <td>NixS</td>
+            </tr>
+            <tr>
+                <td>Мои любимые игры в последнее время</td>
+                <td>Pubg и Osu!</td>
+            </tr>
+            <tr>
+                <td>Живу в городе</td>
+                <td>Ставрополь</td>
+            </tr>
+            <tr>
+                <td>Мои интересы</td>
+                <td>Очень люблю музыку, можно сказать из-за этого я и играю в Osu!</td>
+                <td>Также люблю сидеть за каким нибудь полезным делом с музыкой</td>
+                <td>В плане музыки. Зависит чем я занимаюсь. Если работаю, то спокойную музыку</td>
+                <td>Если гуляю или просто слушаю музыку, то вкус у меня разнообразный</td>
+                <td>Еще в последнее время люблю коллекционировать игры в стиме</td>
+            </tr>
+        </tbody>
+    </table>
 </div>
 <div class="content-block" data-group="pages" id="page2">
     <h3>Контент 2</h3>
+
+<button id="fetchButton">Запрос</button>
+<div id="status"></div>
+<div id="result"></div>
 </div>
-<button onclick>Нажми меня</button>
 <script>
+    document.getElementById('btn').addEventListener('click', function() {
+        console.log('Функция вызвана');
+    });
+   
     document.querySelectorAll('.menu-btn').forEach(button => {
     button.addEventListener('click', () => {
         document.querySelectorAll('.menu-btn').forEach(btn => btn.classList.remove('active'));
@@ -28,9 +65,56 @@
         document.getElementById(targetId).classList.add('active');
     });
 });
-var img = new Image();
-img.src = "https://api.nekosapi.com/v4/images/random";
+
+const button = document.getElementById('fetchButton');
+        const statusDiv = document.getElementById('status');
+        const resultDiv = document.getElementById('result');
+        
+        async function fetchData() {
+            button.disabled = true;
+            button.textContent = 'Загрузка...';
+            
+            statusDiv.innerHTML = '<div class="loading">Выполняется запрос...</div>';
+            resultDiv.innerHTML = '';
+            
+            try {
+                const response = await fetch('https://api.waifu.pics/sfw/neko');
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ошибка: ${response.status} ${response.statusText}`);
+                }
+                
+                const data = await response.json();
+                
+                statusDiv.innerHTML = '<div class="success">Запрос выполнен успешно!</div>';
+                resultDiv.innerHTML = `
+                    <strong>Полученные данные:</strong><br><br>
+                    <strong>ID:</strong> ${data.id}<br>
+                    <strong>User ID:</strong> ${data.userId}<br>
+                    <strong>Заголовок:</strong> ${data.title}<br>
+                    <strong>Содержимое:</strong> ${data.body}<br>
+                    <br>
+                    <details>
+                        <summary>Показать raw JSON</summary>
+                        <pre style="background:#f4f4f4; padding:10px; border-radius:5px; overflow-x:auto;">${JSON.stringify(data, null, 2)}</pre>
+                    </details>
+                `;
+                
+            } catch (error) {
+                console.error('Ошибка:', error);
+                statusDiv.innerHTML = `<div class="error">Ошибка: ${error.message}</div>`;
+                resultDiv.innerHTML = '<div class="error">Не удалось загрузить данные. Проверьте соединение.</div>';
+                
+            } finally {
+                button.disabled = false;
+                button.textContent = 'Запрос';
+            }
+        }
+        
+        button.addEventListener('click', fetchData);
+
 </script>
+
     
 </body>
 </html>
