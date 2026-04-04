@@ -63,3 +63,9 @@ table tbody tr:nth-child() {
   text-align: center;
   vertical-align: middle;
 }
+
+.head {
+  height: 60px;
+  border: 1px;
+  border-radius: 60px;
+}
