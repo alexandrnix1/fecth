@@ -69,3 +69,15 @@ table tbody tr:nth-child() {
   border: 1px;
   border-radius: 60px;
 }
+
+.head2 {
+  height: 20px;
+  border: 1px;
+  border-radius: 20px;
+}
+
+.head3 {
+  height: 20px;
+  border: 1px;
+  border-radius: 20px;
+}
