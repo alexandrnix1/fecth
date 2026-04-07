@@ -1,7 +1,3 @@
-document.getElementById('btn').addEventListener('click', function() {
-        console.log('Функция вызвана');
-    });
-   
     document.querySelectorAll('.menu-btn').forEach(button => {
     button.addEventListener('click', () => {
         document.querySelectorAll('.menu-btn').forEach(btn => btn.classList.remove('active'));
@@ -20,9 +16,9 @@ const button = document.getElementById('fetchButton');
         
         async function fetchData() {
             button.disabled = true;
-            button.textContent = 'Загрузка...';
+            button.textContent = 'Loading...';
             
-            statusDiv.innerHTML = '<div class="loading">Выполняется запрос...</div>';
+            statusDiv.innerHTML = '<div class="loading">Request in progress...</div>';
             resultDiv.innerHTML = '';
             
             try {
@@ -37,25 +33,21 @@ const button = document.getElementById('fetchButton');
 
                 const imageUrl = data.url;
                 
-                statusDiv.innerHTML = '<div class="success">Neko тяночка будет:></div>';
+                statusDiv.innerHTML = '<div class="success">Neko anime girl will be:></div>';
                 resultDiv.innerHTML = `
-            <strong>Вот тяночка Neko:></strong><br><br>
+            <strong>Here is an anime girl called Neko:></strong><br><br>
             <img src="${imageUrl}" alt="Neko image" style="max-width: 100%; max-height: 400px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); margin: 10px 0;">
             <br><br>
-                    <details>
-                        <summary>Показать URL Neko тяночки:></summary>
-                        <pre style="background:#f4f4f4; padding:10px; border-radius:5px; overflow-x:auto;">${JSON.stringify(data, null, 2)}</pre>
-                    </details>
-                `;
+                      `;
                 
             } catch (error) {
                 console.error('Ошибка:', error);
                 statusDiv.innerHTML = `<div class="error">Ошибка: ${error.message}</div>`;
-                resultDiv.innerHTML = '<div class="error">Не будет Neko тянки:(</div>';
+                resultDiv.innerHTML = '<div class="error">There will be no Neko girl anime:(</div>';
                 
             } finally {
                 button.disabled = false;
-                button.textContent = 'Запрос';
+                button.textContent = 'Request';
             }
         }
         
