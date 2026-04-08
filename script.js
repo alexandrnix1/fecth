@@ -2,7 +2,7 @@
     button.addEventListener('click', () => {
         document.querySelectorAll('.menu-btn').forEach(btn => btn.classList.remove('active'));
         document.querySelectorAll('.content-block').forEach(block => block.classList.remove('active'));
-
+        
         button.classList.add('active');
 
         const targetId = button.getAttribute('data-target');
@@ -26,7 +26,7 @@ const button = document.getElementById('fetchButton');
                 
                 
                 if (!response.ok) {
-                    throw new Error(`HTTP ошибка: ${response.status} ${response.statusText}`);
+                    throw new Error(`HTTP error: ${response.status} ${response.statusText}`);
                 }
                 
                 const data = await response.json();
@@ -41,8 +41,8 @@ const button = document.getElementById('fetchButton');
                       `;
                 
             } catch (error) {
-                console.error('Ошибка:', error);
-                statusDiv.innerHTML = `<div class="error">Ошибка: ${error.message}</div>`;
+                console.error('Error:', error);
+                statusDiv.innerHTML = `<div class="error">Error: ${error.message}</div>`;
                 resultDiv.innerHTML = '<div class="error">There will be no Neko girl anime:(</div>';
                 
             } finally {
