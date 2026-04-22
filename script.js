@@ -31,7 +31,7 @@ const button = document.getElementById('fetchButton');
                 
                 const data = await resp.json();
 
-                const imageUrl = data.url;
+                const imageUrl = data.results[0].url;
                 
                 statusDiv.innerHTML = '<div class="success">Neko anime girl will be:></div>';
                 resultDiv.innerHTML = `
